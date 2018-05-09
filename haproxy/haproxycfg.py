@@ -198,6 +198,9 @@ class Haproxy(object):
         else:
             ssl_bind_string += self._config_ssl_cacerts()
 
+        if HTTP2:
+            ssl_bind_string += " alpn h2,http/1.1"
+
         if ssl_bind_string:
             self.ssl_bind_string = ssl_bind_string
 
