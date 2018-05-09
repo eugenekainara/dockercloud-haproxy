@@ -17,7 +17,7 @@ RUN echo PyYAML==3.11 > requirements.txt && \
     echo gevent==1.1.1 >> requirements.txt
 
 RUN apk update && \
-    apk --no-cache add tini haproxy py-pip build-base python-dev ca-certificates && \
+    apk --no-cache add tini haproxy py-pip build-base python-dev ca-certificates tzdata && \
     pip install -r requirements.txt
 
 ENV RSYSLOG_DESTINATION=127.0.0.1 \
