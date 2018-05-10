@@ -1,0 +1,20 @@
+dist: trusty
+language: python
+python:
+  - "2.7"
+install:
+  - pip install -r requirements.txt
+script:
+  - pytest # or py.test for Python versions 3.5 and below
+
+script:
+  - ./test.sh
+#   - docker bu
+# after_success:
+#   - bash <(curl -s https://codecov.io/bash)
+# deploy:
+#   # deploy jar's when TAG commit is build
+#   - provider: script
+#     script: bash gradlew publishPlugins
+#     on:
+#       tags: true
