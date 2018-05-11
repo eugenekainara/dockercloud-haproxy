@@ -5,15 +5,14 @@ python:
 services:
   - docker
 script:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - ./test.sh
-
-
-#   - docker bu
-# after_success:
-#   - bash <(curl -s https://codecov.io/bash)
-# deploy:
-#   # deploy jar's when TAG commit is build
-#   - provider: script
-#     script: bash gradlew publishPlugins
-#     on:
-#       tags: true
+deploy:
+  - provider: script
+    script: docker build -t hhstechgroup/haproxy:$TRAVIS_TAG .
+    on:
+      tags: true
+  - provider: script
+    script: docker build -t hhstechgroup/haproxy:latest .
+    on:
+      branch: master
